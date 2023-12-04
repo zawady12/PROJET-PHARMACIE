@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Personnels</title>
+    <style>
+      
+      </style>
+  </head>
+  <body class="bg-white body-bg">
+ <main class="register-content">
+  <div class="bg-img-hero position-fixed top-0 right-0 left-0 ">
+   <!-- SVG Bottom Shape -->
+               
+  <!-- End SVG Bottom Shape -->
+            </div>
+
+  <!-- Content -->
+    <div class="container py-5 py-sm-7">
+    <a class="d-flex justify-content-center mb-5 pharmacare-logo" href="javascript:void(0)">
+    <!--<img class="z-index-2" src="https://pharmacyv5.bdtask.com/pharmacare-9.4_demo/assets/dist/img/logo/1610774737_a80f4e581f1e063f13a7.png" alt="Image Description">-->
+    </a>
+    <div class="row justify-content-center">
+      <div class="col-md-7 col-lg-5">
+       <!-- Card -->
+        <div class="form-card mb-5">
+        <div class="form-card_body">
+         <!-- Form -->
+         <form action="{{route('postpersonnel')}}" method="POST">
+         <div class="mb-5">
+            @csrf
+            <div class="card o-hidden border-0 shadow-lg my-1">
+            <div class="container" style="width: 100%; height:980px">
+            <br>
+           <center> <h4>INSCRIPTION</h4></center>
+            <br>
+            <br>
+            <div class="mb-3">
+  <label for="nom" class="form-label">Nom</label>
+  <input type="text" class="form-control" name="nom" rows="3" >
+  <span class="text-danger">@error('nom'){{$message}}@enderror</span>
+</div>
+<div class="mb-3">
+  <label for="prenom" class="form-label">Prenom</label>
+  <input type="text" class="form-control" name="prenom" rows="3" >
+  <span class="text-danger">@error('prenom'){{$message}}@enderror</span>
+</div>
+<div class="mb-3">
+  <label for="tel" class="form-label">Numero de telephone</label>
+  <input type="text" class="form-control" name="tel" rows="3" >
+  <span class="text-danger">@error('tel'){{$message}}@enderror</span>
+</div>
+<div class="mb-3">
+  <label for="adresse" class="form-label">Adresse</label>
+  <input type="text" class="form-control" name="adresse" rows="3"  >
+  <span class="text-danger">@error('adresse'){{$message}}@enderror</span>
+</div>
+<div class="mb-3">
+  <label for="email" class="form-label">Email</label>
+  <input type="text" class="form-control" name="email" rows="3" >
+  <span class="text-danger">@error('email'){{$message}}@enderror</span>
+</div>
+<div class="mb-3">
+  <label for="pass" class="form-label">Mot de passe</label>
+  <input type="password" class="form-control" name="pass" rows="3" >
+  <span class="text-danger">@error('pass'){{$message}}@enderror</span>
+</div>
+<div class="mb-3">
+        <label for="role_id" class="form-label">Statut</label>
+        <select name="role_id" id="" class="form-control"><br>
+        <option value="">...</option>
+            @foreach($role as $r)
+            <option value="{{ $r->id }}">{{ $r->libelle}}</option>
+            @endforeach
+        </select>
+        <span class="text-danger">@error('role_id'){{$message}}@enderror</span>
+
+</div>
+<br>
+<center> 
+<div class="d-grid gap-2">
+  <button class="btn btn-success">Inscrire</button>
+      </div>
+      @if(session('success'))
+            <div class="alert alert-light">
+                {{ session('success') }}
+            </div>
+        @endif
+      @if(session('fail'))
+            <div class="alert alert-light">
+                {{ session('fail') }}
+            </div>
+        @endif
+</center>
+</div>
+</div>
+</form>
+</body>
+</html>
+
+
+
+<x-guest-layout>
+  <!doctype html>
+  <html lang="en">
+
+  <head>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Bootstrap CSS -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+      <title>Pharmacie</title>
+
+      <style>
+          .bg-img-hero {
+              height: 100%;
+              background-size: cover;
+              background-repeat: no-repeat;
+              background-position: top center;
+              background-image: url("assets1/img/home.svg");
+              filter: blur(2px);
+          }
+      </style>
+  </head>
+
+
+  <!-- Session Status -->
+  <x-auth-session-status class="mb-4" :status="session('status')" />
+
+  <!-- Validation Errors -->
+  <br>
+  <br>
+  <br>
+
+  <body class="bg-white body-bg">
+      <main class="register-content">
+          <div class="bg-img-hero position-fixed top-0 right-0 left-0 ">
+              <!-- SVG Bottom Shape -->
+
+              <!-- End SVG Bottom Shape -->
+          </div>
+
+          <!-- Content -->
+          <div class="container py-5 py-sm-7">
+              <a class="d-flex justify-content-center mb-5 pharmacare-logo" href="javascript:void(0)">
+              </a>
+              <div class="row justify-content-center">
+                  <div class="col-md-7 col-lg-5">
+                      <!-- Card -->
+                      <div class="form-card mb-5">
+                          <div class="form-card_body">
+                              <!-- Form -->
+                              <form action="{{route('login')}}" method="POST">
+                                  <div class="mb-5">
+                                      @csrf
+                                      <div class="card o-hidden border-0 shadow-lg my-1">
+                                          <div class="container" style="width: 80%; height:500px">
+                                              <br>
+                                              <center>
+                                                  <h4>CONNEXION</h4>
+                                              </center>
+                                              <br>
+                                              <br>
+                                              <!-- Email Address -->
+                                              <div>
+                                                  <x-label for="email" :value="__('Email')" />
+                                                  <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                                              </div>
+                                              <br>
+                                              <!-- Password -->
+                                              <div class="mt-4">
+                                                  <x-label for="password" :value="__('Password')" />
+                                                  <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
+                                              </div>
+
+                                              <!-- Remember Me -->
+                                              <div class="block mt-4">
+                                                  <label for="remember_me" class="inline-flex items-center">
+                                                      <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
+                                                      <span class="ml-2 text-sm text-gray-600">{{ __('Se souvenir de moi') }}</span>
+                                                  </label>
+                                              </div>
+
+                                              <div class="flex items-center justify-end mt-4">
+                                                  @if (Route::has('password.request'))
+                                                  <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                                                      {{ __('Mot de passe oublié ?') }}
+                                                  </a>
+                                                  @endif
+
+                                                  <x-button class="ml-3">
+                                                      {{ __('Se connecter') }}
+                                                  </x-button>
+                                              </div>
+                                              <br>
+                                           <center>      <x-auth-validation-errors class="mb-4" :errors="$errors" />
+
+                                           </center>
+                              </form>
+  </body>
+
+  </html>
+
+</x-guest-layout>
